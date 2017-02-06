@@ -1,0 +1,69 @@
+﻿<Window x:Class="ChessTimer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ChessTimer"
+        mc:Ignorable="d"
+        Title="Chess Timer" Height="270" Width="425" WindowStartupLocation="CenterScreen" WindowStyle="ThreeDBorderWindow" Icon="chess.ico">
+    
+    <Window.DataContext>
+        <local:Model />
+    </Window.DataContext>
+
+    <Window.Background>
+        <LinearGradientBrush EndPoint="1,1" StartPoint="1,0">
+            <LinearGradientBrush.RelativeTransform>
+                <TransformGroup>
+                    <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleY="1" ScaleX="1"/>
+                    <SkewTransform AngleY="0" AngleX="0" CenterY="0.5" CenterX="0.5"/>
+                    <RotateTransform Angle="135" CenterY="0.5" CenterX="0.5"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </LinearGradientBrush.RelativeTransform>
+            <GradientStop Color="#232526"/>
+            <GradientStop Color="#414345" Offset="1.5"/>
+        </LinearGradientBrush>
+    </Window.Background>
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="rsc.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid local:ScaleToWindowSizeBehavior.ParentWindow="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}" Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <GroupBox Header=" Oyuncu 1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,5,0">
+            <TextBlock Text="{Binding DtmPlayer1,StringFormat={}{0:mm\\:ss}}" Foreground="White" FontSize="40" FontFamily="Lucida Console" FontWeight="Light" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        </GroupBox>
+
+        <GroupBox Header=" Oyuncu 2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="3" Margin="5,0,0,0">
+            <TextBlock Text="{Binding DtmPlayer2,StringFormat={}{0:mm\\:ss}}" Foreground="White" FontSize="40" FontFamily="Lucida Console" FontWeight="Light" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        </GroupBox>
+
+        <Button Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2" Content="Başla" Click="Button_Click_1" Name="btn_basla" />
+        <Button Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2" Content="Değiştir" Click="Button_Click" />
+        <Button Grid.Row="2" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2" Content="Sıfırla" Click="Button_Click_2" />
+
+        <TextBlock Text="Chess Timer by Umut M. Dabager © 2017 All Rights Reserved" Grid.Row="4" Grid.ColumnSpan="6" FontSize="10" FontWeight="Light" Foreground="White" Opacity="0.1" HorizontalAlignment="Right"/>
+    </Grid>
+</Window>
